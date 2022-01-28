@@ -25,6 +25,7 @@ class animeDetailScreen extends StatefulWidget {
 class _animeDetailScreenState extends State<animeDetailScreen> {
   late Future<animeDetail> futureDetail;
   bool _expanded = false;
+  List<String> infoCategory = ['Synopsis', "Information"];
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
+    var screenWidth = MediaQuery.of(context).size.width; 
 
     return Container(
       width: double.infinity,
@@ -130,93 +131,112 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  height:100,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.genres.length,
-                                    itemBuilder: (context, index){
-                                      return Padding(
-                                        padding: EdgeInsets.only(right: 5),
-                                        child: TextButton(
-                                          child: Text('${snapshot.data?.genres[index].name}'),
-                                          onPressed: (){
-                                            print('${snapshot.data?.genres[index].malId}');
-                                          },
-                                      ));
-                                    },
+                                 ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  title: Text(
+                                    'Synopsis',
+                                    style: TextStyle(
+                                      fontSize: 16.0, 
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: ExpansionPanelList(
-                                    animationDuration: Duration(milliseconds: 2000),
-                                    children: [
-                                      ExpansionPanel(
-                                          headerBuilder: (context, isExpanded) {
-                                            return Container(
-                                              padding: EdgeInsets.all(20.0),
-                                              child: Text('Synopsis', 
-                                                style: TextStyle(
-                                                  color: Colors.black)
-                                                ,
-                                              ),
-                                            );
-                                          },
-                                          body:Container(
-                                            padding: EdgeInsets.all(10.0),
-                                              child: 
-                                                Text(
-                                                  '${snapshot.data!.synopsis}',
-                                                  style: GoogleFonts.montserrat(
-                                                    height:  2,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                          ),
-                                        isExpanded: _expanded,
-                                        canTapOnHeader: true,
-                                      ),
-                                      ExpansionPanel(
-                                          headerBuilder: (context, isExpanded) {
-                                            return Container(
-                                              padding: EdgeInsets.all(20.0),
-                                              child: Text('Producers', 
-                                                style: TextStyle(
-                                                  color: Colors.black)
-                                                ,
-                                              ),
-                                            );
-                                          },
-                                          body:Container(
-                                            padding: EdgeInsets.only(
-                                              bottom: 20.0,
-                                              left: 20.0,
-                                              right: 20.0
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      child:
+                                          Text(
+                                            '${snapshot.data!.synopsis}',
+                                            style: GoogleFonts.montserrat(
+                                              height:  2,
+                                              fontSize: 14,
                                             ),
-                                              child: 
-                                                Text(
-                                                  '${snapshot.data!.synopsis}',
-                                                  style: GoogleFonts.montserrat(
-                                                    height:  2,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
                                           ),
-                                        isExpanded: _expanded,
-                                        canTapOnHeader: true,
-                                      ),
-                                    ],
-                                    dividerColor: Colors.grey,
-                                    expansionCallback: (panelIndex, isExpanded) {
-                                      _expanded = !_expanded;
-                                      setState(() {
-
-                                      });
-                                    },
+                                    )
+                                  ],
+                                ),
+                                ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  collapsedTextColor: Colors.black,
+                                  title: Text(
+                                    'Information',
+                                    style: TextStyle(
+                                      fontSize: 16.0, 
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black
+                                    ),
                                   ),
-                                )
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: snapshot.data!.studios.length,
+                                        itemBuilder: (context, index){
+                                          return Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 5
+                                                    ),
+                                                    child: Text('Studio(s) : ',
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 10
+                                                    ),
+                                                    child: Text('${snapshot.data?.studios[index].studio_name}',
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text('Genre(s) : ',
+                                                  style: GoogleFonts.montserrat(
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Flexible(
+                                                    child: Container(
+                                                      height: 50.0,
+                                                      child:  ListView.builder(
+                                                        scrollDirection: Axis.horizontal,
+                                                        shrinkWrap: true,
+                                                        itemCount: snapshot.data!.genres.length,
+                                                        itemBuilder: (context, index){
+                                                          return Padding(
+                                                            padding: EdgeInsets.only(right: 5),
+                                                            child: TextButton(
+                                                              child: Text('${snapshot.data?.genres[index].name}'),
+                                                              onPressed: (){
+                                                                print('${snapshot.data?.genres[index].malId}');
+                                                              },
+                                                          ));
+                                                        },
+                                                      ),
+                                                    )
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ],
                             )
                         ),
