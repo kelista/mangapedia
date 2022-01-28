@@ -17,6 +17,8 @@ class animeCard extends StatelessWidget {
     return SizedBox(
       width: 150.0,
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
         child: InkWell(
           onTap: () async{
             //Navigator.pushNamed(context, '/' + mal_ID);

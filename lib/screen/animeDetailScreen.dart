@@ -24,6 +24,7 @@ class animeDetailScreen extends StatefulWidget {
 
 class _animeDetailScreenState extends State<animeDetailScreen> {
   late Future<animeDetail> futureDetail;
+  bool _expanded = false;
 
   @override
   void initState() {
@@ -149,24 +150,72 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                 ),
                                 Container(
                                   alignment: Alignment.topLeft,
-                                  child: Column (
+                                  child: ExpansionPanelList(
+                                    animationDuration: Duration(milliseconds: 2000),
                                     children: [
-                                      Text(
-                                        'Synopsis',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                                      ExpansionPanel(
+                                          headerBuilder: (context, isExpanded) {
+                                            return Container(
+                                              padding: EdgeInsets.all(20.0),
+                                              child: Text('Synopsis', 
+                                                style: TextStyle(
+                                                  color: Colors.black)
+                                                ,
+                                              ),
+                                            );
+                                          },
+                                          body:Container(
+                                            padding: EdgeInsets.all(10.0),
+                                              child: 
+                                                Text(
+                                                  '${snapshot.data!.synopsis}',
+                                                  style: GoogleFonts.montserrat(
+                                                    height:  2,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                          ),
+                                        isExpanded: _expanded,
+                                        canTapOnHeader: true,
                                       ),
-                                      Text(
-                                        '${snapshot.data!.synopsis}',
-                                        style: GoogleFonts.montserrat(
-                                          height:  2,
-                                          fontSize: 14,
-                                        ),
+                                      ExpansionPanel(
+                                          headerBuilder: (context, isExpanded) {
+                                            return Container(
+                                              padding: EdgeInsets.all(20.0),
+                                              child: Text('Producers', 
+                                                style: TextStyle(
+                                                  color: Colors.black)
+                                                ,
+                                              ),
+                                            );
+                                          },
+                                          body:Container(
+                                            padding: EdgeInsets.only(
+                                              bottom: 20.0,
+                                              left: 20.0,
+                                              right: 20.0
+                                            ),
+                                              child: 
+                                                Text(
+                                                  '${snapshot.data!.synopsis}',
+                                                  style: GoogleFonts.montserrat(
+                                                    height:  2,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                          ),
+                                        isExpanded: _expanded,
+                                        canTapOnHeader: true,
                                       ),
                                     ],
-                                  )
+                                    dividerColor: Colors.grey,
+                                    expansionCallback: (panelIndex, isExpanded) {
+                                      _expanded = !_expanded;
+                                      setState(() {
+
+                                      });
+                                    },
+                                  ),
                                 )
                               ],
                             )

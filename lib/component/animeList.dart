@@ -178,7 +178,7 @@ class _animerecListState extends State<animerecList> {
   @override
   void initState() {
     super.initState();
-    animeRecApi.getAnimeRec(38450);
+    animeRecApi.getAnimeRec(5114);
   }
 
   @override
@@ -200,7 +200,7 @@ class _animerecListState extends State<animerecList> {
             ),
           ),
           FutureBuilder<List<AnimeRecommendation>>(
-          future: animeRecApi.getAnimeRec(38450),
+          future: animeRecApi.getAnimeRec(5114),
           builder: (context, snapshot) {
             
             switch (snapshot.connectionState) {
