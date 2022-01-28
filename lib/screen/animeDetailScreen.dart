@@ -182,7 +182,7 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                                 children: [
                                                   Padding(
                                                     padding: EdgeInsets.only(
-                                                      right: 5
+                                                      right: 7
                                                     ),
                                                     child: Text('Episodes : ',
                                                     style: GoogleFonts.montserrat(
@@ -204,13 +204,16 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                                   )
                                                 ],
                                               ),
+                                              SizedBox(
+                                                height: 17.0
+                                              ),
                                               Row(
                                                 children: [
                                                   Padding(
                                                     padding: EdgeInsets.only(
-                                                      right: 5
+                                                      right: 22
                                                     ),
-                                                    child: Text('Status : ',
+                                                    child: Text('Status  : ',
                                                     style: GoogleFonts.montserrat(
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.bold,
