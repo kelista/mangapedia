@@ -123,6 +123,9 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                   ),
                                 ),
                                 Container(
+                                  margin:EdgeInsets.only(
+                                    bottom: 20.0,
+                                  ),
                                   alignment: Alignment.topLeft,
                                   child: Text(
                                     '${snapshot.data!.jpTitle}',
@@ -181,7 +184,7 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                                     padding: EdgeInsets.only(
                                                       right: 5
                                                     ),
-                                                    child: Text('Studio(s) : ',
+                                                    child: Text('Episodes : ',
                                                     style: GoogleFonts.montserrat(
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.bold,
@@ -192,7 +195,33 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                                     padding: EdgeInsets.only(
                                                       right: 10
                                                     ),
-                                                    child: Text('${snapshot.data?.studios[index].studio_name}',
+                                                    child: Text(
+                                                      '${snapshot.data!.episodes}',
+                                                      style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 5
+                                                    ),
+                                                    child: Text('Status : ',
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 10
+                                                    ),
+                                                    child: Text('${snapshot.data!.status}',
                                                     style: GoogleFonts.montserrat(
                                                         fontSize: 14,
                                                       ),
@@ -229,7 +258,32 @@ class _animeDetailScreenState extends State<animeDetailScreen> {
                                                     )
                                                   )
                                                 ],
-                                              )
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 5
+                                                    ),
+                                                    child: Text('Studio(s) : ',
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 10
+                                                    ),
+                                                    child: Text('${snapshot.data?.studios[index].studio_name}',
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ],
                                           );
                                         },

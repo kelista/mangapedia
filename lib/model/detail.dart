@@ -7,7 +7,9 @@ class animeDetail {
   final int malID;
   final int ranking;
   final int popularity;
+  final int episodes;
   final List<Studios> studios;
+  final String status;
 
 
   animeDetail({
@@ -20,6 +22,8 @@ class animeDetail {
     required this.ranking,
     required this.popularity,
     required this.studios,
+    required this.status,
+    required this.episodes,
   });
 
   factory animeDetail.fromJson(Map<String, dynamic> json) => animeDetail (
@@ -32,6 +36,8 @@ class animeDetail {
       popularity: json['popularity']?? 0,
       synopsis: json['synopsis']?? '',
       studios: new List<Studios>.from(json["studios"].map((x) => Studios.fromJson(x))),
+      status: json['status']?? '',
+      episodes: json['episodes']?? 0,
       // expanded : true,
   );
 }
